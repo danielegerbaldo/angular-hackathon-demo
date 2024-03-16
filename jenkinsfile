@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from Git repository
+                checkout scm
+            }
+        }
+
     stage('SonarQube Code Analysis') {
                 steps {
                     dir("${WORKSPACE}"){
@@ -31,4 +39,5 @@ pipeline {
                     }
                 }
             }
+        }
 }
