@@ -39,5 +39,15 @@ pipeline {
                     }
                 }
             }
+          stage('AWS Lambda'){
+            	steps {
+            		invokeLambda([awsRegion: 'us-east-1',
+            			functionName: '7ops_GetSonarqube_SendS3', 
+            			payload: "{ \"Suspend\": \"true\"}] }", 
+            			synchronous: true, 
+            			useInstanceCredentials: true])
+            	}
+        }
+          
         }
 }
